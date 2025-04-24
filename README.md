@@ -36,7 +36,7 @@ implementation("tech.medivh:shengsheng-classpy:1.0.0")
 ### API
 
 ```java
-ClassFile classFile = new ClassFileParser().parse(new File("path/to/your/classfile.class"));
+ClassFile parse = new ClassFileParser().parse(Files.readAllBytes(Path.of("classFile")));
 ```
 
 
