@@ -22,7 +22,7 @@ add dependency to your project
 <dependency>
     <groupId>tech.medivh</groupId>
     <artifactId>shengsheng-classpy</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
 </dependency>
 
 ```
@@ -30,7 +30,7 @@ add dependency to your project
 ### Gradle
 
 ```kotlin
-implementation("tech.medivh:shengsheng-classpy:1.0.0")
+implementation("tech.medivh:shengsheng-classpy:1.1.0")
 ```
 
 ### API
@@ -39,6 +39,34 @@ implementation("tech.medivh:shengsheng-classpy:1.0.0")
 ClassFile parse = new ClassFileParser().parse(Files.readAllBytes(Path.of("classFile")));
 ```
 
+
+## Version
+
+The version ending with "origin" is the complete [classpy](https://github.com/zxh0/classpy) source code.
+Other versions have enhanced the API
+
+example:
+
+```xml
+
+classpy version:
+
+<dependency>
+    <groupId>tech.medivh</groupId>
+    <artifactId>shengsheng-classpy</artifactId>
+    <version>1.1.0.origin</version>
+</dependency>
+
+shengsheng version:
+
+<dependency>
+    <groupId>tech.medivh</groupId>
+    <artifactId>shengsheng-classpy</artifactId>
+    <version>1.1.0</version>
+</dependency>
+
+
+```
 
 
 ## License
