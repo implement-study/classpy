@@ -21,7 +21,11 @@ public class Instruction extends ClassFilePart {
     public int getPc() {
         return pc;
     }
-    
+
+    public Opcode getOpcode() {
+        return opcode;
+    }
+
     @Override
     protected final void readContent(ClassFileReader reader) {
         if (!super.getParts().isEmpty()) {
@@ -31,7 +35,7 @@ public class Instruction extends ClassFilePart {
             readOperands(reader);
         }
     }
-    
+
     protected void readOperands(ClassFileReader reader) {
         if (opcode.operandCount > 0) {
             reader.skipBytes(opcode.operandCount);
