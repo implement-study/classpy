@@ -22,25 +22,27 @@ public class ConstantMethodrefInfo extends ConstantFieldrefInfo {
 
 
     public List<String> paramClassName(ConstantPool constantPool) {
-        U2 nameAndTypeIndex = (U2) getParts().get(2);
-        ConstantNameAndTypeInfo nameAndTypeInfo = constantPool.getNameAndTypeInfo(nameAndTypeIndex.getValue());
-        U2 descIndex = (U2) nameAndTypeInfo.getParts().get(2);
-        String constantDesc = constantPool.getConstantDesc(descIndex.getValue());
+        String constantDesc = constantDesc(constantPool);
         int endParamsIndex = constantDesc.indexOf(')');
         String paramsPart = constantDesc.substring(1, endParamsIndex);
         return parseParameterTypes(paramsPart);
     }
 
     public boolean isVoid(ConstantPool constantPool) {
-        U2 nameAndTypeIndex = (U2) getParts().get(2);
-        ConstantNameAndTypeInfo nameAndTypeInfo = constantPool.getNameAndTypeInfo(nameAndTypeIndex.getValue());
-        U2 descIndex = (U2) nameAndTypeInfo.getParts().get(2);
-        String constantDesc = constantPool.getConstantDesc(descIndex.getValue());
+        String constantDesc = constantDesc(constantPool);
         int endParamsIndex = constantDesc.indexOf(')');
         String returnPart = constantDesc.substring(endParamsIndex + 1);
         return "V".equals(returnPart);
     }
 
+    private String constantDesc(ConstantPool constantPool){
+        U2 nameAndTypeIndex = (U2) getParts().get(2);
+        ConstantNameAndTypeInfo nameAndTypeInfo = constantPool.getNameAndTypeInfo(nameAndTypeIndex.getValue());
+        U2 descIndex = (U2) nameAndTypeInfo.getParts().get(2);
+        return constantPool.getConstantDesc(descIndex.getValue());
+    }
+    
+    
     public String methodName(ConstantPool constantPool) {
         U2 nameAndTypeIndex = (U2) getParts().get(2);
         ConstantNameAndTypeInfo nameAndTypeInfo = constantPool.getNameAndTypeInfo(nameAndTypeIndex.getValue());

@@ -7,6 +7,8 @@ import tech.medivh.classpy.classfile.datatype.U2;
 import tech.medivh.classpy.classfile.datatype.U2CpIndex;
 import tech.medivh.classpy.classfile.jvm.AccessFlagType;
 
+import java.util.List;
+
 /*
 ClassFile {
     u4             magic;
@@ -58,7 +60,7 @@ public class ClassFile extends ClassFilePart {
     public Table getMethods() {
         return (Table) this.getParts().get(13);
     }
-    
+
     public MethodInfo getMainMethod() {
         return getMethods().getParts()
             .stream()
@@ -67,7 +69,11 @@ public class ClassFile extends ClassFilePart {
             .findFirst()
             .orElseThrow(() -> new RuntimeException("main method not found"));
     }
-    
+
+    public List<MethodInfo> getMethods(String name) {
+        return getMethods().getParts().stream().map(MethodInfo.class::cast)
+            .filter(info -> info.getMethodName(this.getConstantPool()).equals(name)).toList();
+    }
 
 
 }

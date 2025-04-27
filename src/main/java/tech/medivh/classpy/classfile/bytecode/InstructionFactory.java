@@ -11,17 +11,20 @@ public class InstructionFactory {
         // TODO
         return switch (opcode) {
             case ldc_w, ldc2_w,
-                    getstatic, putstatic, getfield, putfield,
-                    invokevirtual, invokespecial, invokestatic,
-                    _new, anewarray, checkcast, _instanceof -> new InstructionCp2(opcode, pc);
+                 putstatic, getfield, putfield,
+                 invokespecial,
+                 _new, anewarray, checkcast, _instanceof -> new InstructionCp2(opcode, pc);
+            case invokestatic -> new InvokeStatic(opcode, pc);
+            case invokevirtual -> new InvokeVirtual(opcode, pc);
+            case getstatic -> new GetStatic(opcode, pc);
             case iload, lload, fload, dload, aload,
-                    istore, lstore, fstore, dstore, astore -> new InstructionU1(opcode, pc);
+                 istore, lstore, fstore, dstore, astore -> new InstructionU1(opcode, pc);
             case ifeq, ifne, iflt, ifge, ifgt, ifle,
-                    if_icmpeq, if_icmpne, if_icmplt, if_icmpge, if_icmpgt, if_icmple,
-                    _goto, ifnull, ifnonnull -> new Branch(opcode, pc);
+                 if_icmpeq, if_icmpne, if_icmplt, if_icmpge, if_icmpgt, if_icmple,
+                 _goto, ifnull, ifnonnull -> new Branch(opcode, pc);
             case bipush -> new Bipush(opcode, pc);
             case sipush -> new Sipush(opcode, pc);
-            case ldc -> new InstructionCp1(opcode, pc);
+            case ldc -> new Ldc(opcode, pc);
             case iinc -> new Iinc(opcode, pc);
             case tableswitch -> new TableSwitch(opcode, pc);
             case lookupswitch -> new LookupSwitch(opcode, pc);

@@ -8,12 +8,18 @@ public class Branch extends Instruction {
     public Branch(Opcode opcode, int pc) {
         super(opcode, pc);
     }
-    
+
+    private int jumpTo;
+
     @Override
     protected void readOperands(ClassFileReader reader) {
         short offset = reader.readFixedI16();
-        int jmpTo = pc + offset;
-        setDesc(getDesc() + " " + jmpTo);
+        jumpTo = pc + offset;
+        setDesc(getDesc() + " " + jumpTo);
     }
-    
+
+    public int getJumpTo() {
+        return jumpTo;
+    }
+
 }

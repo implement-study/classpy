@@ -5,6 +5,8 @@ import tech.medivh.classpy.classfile.attribute.CodeAttribute;
 import tech.medivh.classpy.classfile.bytecode.Instruction;
 import tech.medivh.classpy.classfile.constant.ConstantPool;
 import tech.medivh.classpy.classfile.datatype.Table;
+import tech.medivh.classpy.classfile.datatype.U2;
+import tech.medivh.classpy.classfile.datatype.U2CpIndex;
 import tech.medivh.classpy.classfile.jvm.AccessFlagType;
 import tech.medivh.classpy.common.FilePart;
 
@@ -50,6 +52,10 @@ public class MethodInfo extends ClassFilePart {
             .filter(CodeAttribute.class::isInstance)
             .findFirst()
             .orElseThrow(() -> new IllegalArgumentException("Code attribute not found"));
+    }
+
+    public String getMethodName(ConstantPool pool) {
+        return pool.getUtf8String(((U2CpIndex) this.getParts().get(1)).getValue());
     }
 
     public int getMaxStack() {

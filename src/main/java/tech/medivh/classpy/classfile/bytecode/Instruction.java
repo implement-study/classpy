@@ -2,6 +2,8 @@ package tech.medivh.classpy.classfile.bytecode;
 
 import tech.medivh.classpy.classfile.ClassFilePart;
 import tech.medivh.classpy.classfile.ClassFileReader;
+import tech.medivh.classpy.classfile.constant.ConstantMethodrefInfo;
+import tech.medivh.classpy.classfile.constant.ConstantPool;
 import tech.medivh.classpy.classfile.jvm.Opcode;
 
 /**

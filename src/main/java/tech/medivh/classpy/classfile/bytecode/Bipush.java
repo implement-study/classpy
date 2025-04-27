@@ -9,10 +9,18 @@ public class Bipush extends Instruction {
         super(opcode, pc);
     }
 
+    private byte operand;
+
     @Override
     protected void readOperands(ClassFileReader reader) {
-        byte operand = reader.readByte();
+        operand = reader.readByte();
         setDesc(getDesc() + " " + operand);
     }
-    
+
+
+    public byte getPushByte() {
+        return operand;
+    }
+
+
 }

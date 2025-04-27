@@ -20,5 +20,10 @@ public class ConstantClassInfo extends ConstantInfo {
     protected String loadDesc(ConstantPool cp) {
         return cp.getUtf8String(getNameIndex());
     }
-    
+
+
+    public String getClassName(ConstantPool cp) {
+        return cp.getUtf8String(getNameIndex()).replace("/", ".");
+    }
+
 }

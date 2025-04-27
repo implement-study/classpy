@@ -121,4 +121,8 @@ public class ConstantPool extends ClassFilePart {
         return c.getDesc();
     }
     
+    public ConstantInfo getConstant(int index) {
+        return constants[index];
+    }
+    
 }
